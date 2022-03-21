@@ -3,3 +3,4 @@ def foisdeux(i,j):
     print(b)
 foisdeux(100,10)
 
+          
