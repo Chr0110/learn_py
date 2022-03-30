@@ -1,14 +1,10 @@
-class numbers:
-    def __iter__(self):
-        self.a = 1
-        return(self)
-
-    def __next__(self):
-        x = self.a
-        self.a += 1
-        return (x)
-
-mynumber = numbers()
-myiter = iter(mynumber)
-
-print(next(myiter))
+try:
+  f = open("demofile.txt")
+  try:
+    f.write("Lorum Ipsum")
+  except:
+    print("Something went wrong when writing to the file")
+  finally:
+    f.close()
+except:
+  print("Something went wrong when opening the file")  
