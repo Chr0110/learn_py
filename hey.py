@@ -1,4 +1,8 @@
-dollar = 46
-hh = 13
-txt = "m gonna buy this shit by {} dollars {}"
-print(txt.format(dollar, hh))
+f = open("file3.txt", "w")
+f.write("here we fill it")
+f.close()
+f = open("file3.txt", "a")
+f.write(" ya zabbi")
+f.close()
+f = open("file3.txt")
+print(f.read())
