@@ -19,7 +19,7 @@ category_tab = []
 localisation_tab = []
 time_tab = []
 links_tab = []
-phone_tab= []
+phone_tab = []
 result = requests.get("https://www.avito.ma/fr/maroc/%C3%A0_vendre")
 src = result.content
 soup = BeautifulSoup(src, "lxml")
@@ -43,10 +43,11 @@ for j in range(len(links)):
     links_tab.append(links[j].find("a").attrs['href'])
 for link in links_tab:
     result = requests.get(link)
-    src = result.content
-    soup1 = BeautifulSoup(src, "lxml")
-    phone = soup1.find_all("h3", {"class":"sc-1x0vz2r-0 kSIxrj"}).text
-    print(phone)
+    src = result.content  
+    soup = BeautifulSoup(src, "lxml")
+    phone = soup.find("h1", {"class":"sc-1x0vz2r-0 iLDWht"})
+    print(phone.text)
+    #phone_tab.append(phone.text)
     #phone2 = soup1.find("a").attrs['href']
     #a += 1
     #print(a)
