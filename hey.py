@@ -32,7 +32,7 @@ links = soup.find_all("div",{"class":"oan6tk-0 hEwuhz"})
 a = 0
 for i in range(len(description)):
     pricess_tab.append(prices[i].text)
-    description_tab.append(description[i].text)
+    description_tab.append(description[i].text) 
     category_tab.append(catego[i].text)
 for i in range(len(localisation)):
     if localisation[i].text.find(":") == -1:
