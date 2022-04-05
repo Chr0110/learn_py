@@ -4,15 +4,10 @@ from unittest import result
 import requests
 from bs4 import BeautifulSoup
 import csv
-import re
+#import re
 from datetime import date, datetime
 from itertools import zip_longest
-# def is_int(s):
-#     try:
-#         int(s)
-#         return True
-#     except ValueError:
-#         return False
+
 pricess_tab = []
 description_tab = []
 category_tab = []
@@ -47,17 +42,7 @@ for link in links_tab:
     soup = BeautifulSoup(src, "lxml")
     phone = soup.find("h1", {"class":"sc-1x0vz2r-0 iLDWht"})
     print(phone.text)
-    #phone_tab.append(phone.text)
-    #phone2 = soup1.find("a").attrs['href']
-    #a += 1
-    #print(a)
-    #phone_tab.append(phone[a].text)
-    #print(phone2)
-#print(a)
-# print(pricess_tab)
-# print(description_tab)
-# print(category_tab)
-# print(localisation_tab)
+
 first_file = [category_tab, description_tab, pricess_tab, localisation_tab, time_tab, links_tab, phone_tab]
 exported = zip_longest(*first_file)
 with open("/Users/eradi-/Desktop/learn_py/first.csv", "w") as file:
