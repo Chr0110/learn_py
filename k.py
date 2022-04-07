@@ -4,6 +4,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import requests
 import time
@@ -24,10 +27,16 @@ driver.implicitly_wait(30)
 e4.send_keys("MehdiGithub@123")
 e4 = driver.find_element_by_css_selector('.btn-primary').click()
 e5 = driver.find_element_by_css_selector('.avatar-small').click()
-driver.implicitly_wait(3000)
-e6 = driver.find_element_by_link_text("Your profile").click()
-time.sleep(3)
-driver.quit()
+try:
+    e6 = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.LINK_TEXT, ("Your profile")))
+    )
+    time.sleep(3)
+    e6.click()
+    time.sleep(3)
+    print("clicked")
+except:
+    driver.quit
 # cookies = driver.get_cookies()
 # session = requests.Session()
 # for cookie in cookies:
