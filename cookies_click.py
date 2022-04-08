@@ -16,11 +16,9 @@ driver.get("https://orteil.dashnet.org/cookieclicker/")
 driver.implicitly_wait(5)
 
 cookies = driver.find_element_by_id("bigCookie")
-# cookies_count = driver.find_element_by_id("cookies")
-# items = [driver.find_element_by_id("productPrice" + str(i)) for i in range(1, -1, -1)]
+cookies_count = driver.find_element_by_id("cookies")
+items = [driver.find_element_by_id("productPrice" + str(i)) for i in range(1, -1, -1)]
 a = ActionChains(driver)
-
-
 for i in range(5000):
     a.click(cookies)
 a.perform()
