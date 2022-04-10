@@ -4,9 +4,13 @@ from unittest import result
 import requests
 from bs4 import BeautifulSoup
 import csv
+import pymongo
+import certifi
+ca = certifi.where()
 #import re
 from datetime import date, datetime
 from itertools import zip_longest
+myclient = pymongo.MongoClient(f"mongodb+srv://Fristcluster:ZadeQm_kwwsZuJ2@cluster0.3zolr.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
 
 pricess_tab = []
 description_tab = []
@@ -40,10 +44,21 @@ for i in range(len(localisation)):
 #     soup = BeautifulSoup(src, "lxml")
 #     phone = soup.find("h1", {"class":"sc-1x0vz2r-0 iLDWht"})
 #     print(phone.text)
-
-first_file = [category_tab, description_tab, pricess_tab, localisation_tab, time_tab, links_tab, phone_tab]
-exported = zip_longest(*first_file)
-with open("/Users/eradi-/Desktop/learn_py/first.csv", "w") as file:
-    wr = csv.writer(file)
-    wr.writerow(["Category", "Description", "Price", "Location", "Time", "Offer link", "Phone"])
-    wr.writerows(exported)
+# first_file = [category_tab, description_tab, pricess_tab, localisation_tab, time_tab, links_tab, phone_tab]
+# exported = zip_longest(*first_file)
+# with open("/Users/eradi-/Desktop/learn_py/first.csv", "w") as file:
+#     wr = csv.writer(file)
+#     wr.writerow(["Category", "Description", "Price", "Location", "Time", "Offer link", "Phone"])
+#     wr.writerows(exported)
+print(myclient.list_database_names())
+mydb = myclient["Avito_data"]
+mycol = mydb["Informations"]
+mydict = {
+    "Category" : category_tab,
+    "Description" : description_tab,
+    "Price" : pricess_tab,
+    "Location" : localisation_tab,
+    "Time of announcign" : time_tab,
+}
+exported = zip(*mydict)
+x = mycol.insert_one(mydict)
