@@ -14,4 +14,4 @@ driver.implicitly_wait(30)
 driver.find_element_by_css_selector('#search-icon-legacy.ytd-searchbox yt-icon.ytd-searchbox').click()
 driver.find_element_by_link_text("")
 while 1:
-    sleep (1)
+    pass
