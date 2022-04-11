@@ -54,11 +54,13 @@ print(myclient.list_database_names())
 mydb = myclient["Avito_data"]
 mycol = mydb["Informations"]
 mydict = {
+    zip: {
     "Category" : category_tab,
     "Description" : description_tab,
     "Price" : pricess_tab,
     "Location" : localisation_tab,
     "Time of announcign" : time_tab,
+    }
 }
-exported = zip(*mydict)
+# exported = zip(*mydict)
 x = mycol.insert_one(mydict)
